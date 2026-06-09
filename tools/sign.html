@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign PDF Online Free – Add Digital Signature | PDFWise</title>
+  <meta name="description" content="Add your digital signature to PDF documents online for free. Draw or type your signature. No signup required." />
+  <meta name="keywords" content="sign pdf online free, digital signature pdf, e-sign pdf, add signature to pdf" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/sign.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar"><div class="nav-inner">
+  <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+  <div class="nav-links"><a href="protect.html">Protect</a><a href="watermark.html">Watermark</a><a href="compress.html">Compress</a></div>
+  <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+</div></nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement · 728x90 (Replace with AdSense)</div></div>
+<section class="tool-hero" style="background:linear-gradient(135deg,#16a085,#0e6b58)">
+  <h1>✍️ Sign PDF</h1>
+  <p>Draw your signature and stamp it onto any PDF page</p>
+</section>
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+
+  <!-- Step 1: Draw signature -->
+  <div id="sigStep" class="options-panel" style="display:block">
+    <h3>✍️ Step 1: Draw Your Signature</h3>
+    <p style="font-size:0.85rem;color:var(--gray);margin-bottom:1rem">Use your mouse or finger to sign below:</p>
+    <canvas id="sigCanvas" width="560" height="160" style="border:2px solid #e63946;border-radius:8px;cursor:crosshair;background:#fff;width:100%;max-width:560px;display:block"></canvas>
+    <div style="display:flex;gap:1rem;margin-top:0.75rem;flex-wrap:wrap">
+      <button class="btn btn-secondary" id="clearSig" style="padding:8px 20px;font-size:0.875rem">🗑️ Clear</button>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:0.85rem;color:var(--gray)">Color:</span>
+        <input type="color" id="sigColor" value="#000066" style="width:36px;height:36px;border:none;cursor:pointer;padding:2px;border-radius:4px" />
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:0.85rem;color:var(--gray)">Size:</span>
+        <input type="range" id="sigSize" min="1" max="6" value="2" style="width:80px" />
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-primary btn-lg" id="nextStepBtn">Next: Upload PDF →</button>
+    </div>
+  </div>
+
+  <!-- Step 2: Upload PDF -->
+  <div class="drop-zone" id="dropZone" style="display:none">
+    <div class="dz-icon">📂</div>
+    <h3>Step 2: Upload the PDF to sign</h3>
+    <p>or click to browse from your device</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+  <div class="file-list" id="filePreview" style="display:none"></div>
+
+  <div class="options-panel" id="placeOptions" style="display:none">
+    <h3>📍 Signature Placement</h3>
+    <div class="opt-row">
+      <div><div class="opt-label">Page</div></div>
+      <select id="sigPage"><option value="last">Last page</option><option value="first">First page</option><option value="all">All pages</option></select>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Position</div></div>
+      <select id="sigPosition">
+        <option value="bottom-right">Bottom Right</option>
+        <option value="bottom-left">Bottom Left</option>
+        <option value="bottom-center">Bottom Center</option>
+        <option value="top-right">Top Right</option>
+      </select>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Signature Size</div></div>
+      <div class="slider-wrap">
+        <span style="font-size:0.8rem;color:var(--gray)">Small</span>
+        <input type="range" id="sigScale" min="50" max="250" value="120" />
+        <span style="font-size:0.8rem;color:var(--gray)">Large</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-primary btn-lg" id="applySignBtn">✍️ Apply Signature</button></div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div><h3>PDF Signed!</h3><p>Your signature has been applied to the PDF</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download Signed PDF</button>
+      <button class="btn btn-secondary" onclick="location.reload()">🔄 Sign Another</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+<footer><div class="footer-inner"><div class="footer-bottom"><span>© 2026 PDFWise · pdfwise.io</span>
+  <span><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></span></div></div></footer>
+<script src="../js/main.js"></script>
+<script>
+// Signature canvas setup
+const canvas=document.getElementById('sigCanvas');
+const ctx=canvas.getContext('2d');
+let drawing=false, sigDataUrl=null;
+ctx.strokeStyle='#000066'; ctx.lineWidth=2; ctx.lineCap='round'; ctx.lineJoin='round';
+
+function getPos(e){
+  const r=canvas.getBoundingClientRect();
+  const scaleX=canvas.width/r.width, scaleY=canvas.height/r.height;
+  if(e.touches){ return{x:(e.touches[0].clientX-r.left)*scaleX, y:(e.touches[0].clientY-r.top)*scaleY}; }
+  return{x:(e.clientX-r.left)*scaleX, y:(e.clientY-r.top)*scaleY};
+}
+canvas.addEventListener('mousedown',e=>{drawing=true;ctx.beginPath();const p=getPos(e);ctx.moveTo(p.x,p.y);});
+canvas.addEventListener('mousemove',e=>{if(!drawing)return;const p=getPos(e);ctx.lineTo(p.x,p.y);ctx.stroke();});
+canvas.addEventListener('mouseup',()=>drawing=false);
+canvas.addEventListener('mouseleave',()=>drawing=false);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();drawing=true;ctx.beginPath();const p=getPos(e);ctx.moveTo(p.x,p.y);},{passive:false});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!drawing)return;const p=getPos(e);ctx.lineTo(p.x,p.y);ctx.stroke();},{passive:false});
+canvas.addEventListener('touchend',()=>drawing=false);
+document.getElementById('clearSig').addEventListener('click',()=>{ctx.clearRect(0,0,canvas.width,canvas.height);});
+document.getElementById('sigColor').addEventListener('input',function(){ctx.strokeStyle=this.value;});
+document.getElementById('sigSize').addEventListener('input',function(){ctx.lineWidth=parseInt(this.value);});
+
+document.getElementById('nextStepBtn').addEventListener('click',()=>{
+  // Check if signature was drawn
+  const data=ctx.getImageData(0,0,canvas.width,canvas.height);
+  const hasContent=data.data.some((v,i)=>i%4===3&&v>0);
+  if(!hasContent){showAlert('alert','Please draw your signature first.');return;}
+  sigDataUrl=canvas.toDataURL('image/png');
+  document.getElementById('sigStep').style.display='none';
+  document.getElementById('dropZone').style.display='';
+  setupDropZone('dropZone','fileInput',files=>{
+    selectedFile=files[0];
+    document.getElementById('filePreview').style.display='block';
+    document.getElementById('filePreview').innerHTML='<div class="file-item"><span class="file-icon">📄</span><span class="file-name">'+selectedFile.name+'</span><span class="file-size">'+formatBytes(selectedFile.size)+'</span><span class="file-remove" onclick="location.reload()">✕</span></div>';
+    document.getElementById('dropZone').style.display='none';
+    document.getElementById('placeOptions').style.display='block';
+  });
+});
+
+let selectedFile=null, resultBlob=null;
+document.getElementById('applySignBtn').addEventListener('click',async()=>{
+  const pageMode=document.getElementById('sigPage').value;
+  const position=document.getElementById('sigPosition').value;
+  const scale=parseInt(document.getElementById('sigScale').value);
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2000);
+  try{
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    // Embed signature image
+    const sigResp=await fetch(sigDataUrl);
+    const sigBuf=await sigResp.arrayBuffer();
+    const sigImg=await doc.embedPng(sigBuf);
+    const sigW=scale, sigH=Math.round(sigImg.height*(scale/sigImg.width));
+    const margin=20;
+    const pages=doc.getPages();
+    const total=pages.length;
+    let targetPages=[];
+    if(pageMode==='last') targetPages=[pages[total-1]];
+    else if(pageMode==='first') targetPages=[pages[0]];
+    else targetPages=pages;
+    targetPages.forEach(page=>{
+      const {width,height}=page.getSize();
+      const [vPos,hPos]=position.split('-');
+      const y=vPos==='bottom'?margin:height-sigH-margin;
+      let x;
+      if(hPos==='right') x=width-sigW-margin;
+      else if(hPos==='left') x=margin;
+      else x=(width-sigW)/2;
+      page.drawImage(sigImg,{x,y,width:sigW,height:sigH,opacity:0.9});
+    });
+    const bytes=await doc.save();
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    setTimeout(()=>{document.getElementById('placeOptions').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(resultBlob)downloadBlob(resultBlob,'signed_'+selectedFile.name);});
+</script>
+</body></html>

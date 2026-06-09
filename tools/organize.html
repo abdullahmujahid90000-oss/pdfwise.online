@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organize PDF Pages Online Free – Reorder Pages | PDFWise</title>
+  <meta name="description" content="Reorder and rearrange PDF pages online for free. Enter new page order to reorganize your PDF instantly." />
+  <meta name="keywords" content="organize pdf pages, reorder pdf pages, rearrange pdf, pdf page organizer online free" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/organize.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar"><div class="nav-inner">
+  <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+  <div class="nav-links"><a href="split.html">Split</a><a href="remove-pages.html">Remove Pages</a><a href="merge.html">Merge</a></div>
+  <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+</div></nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement · 728x90 (Replace with AdSense)</div></div>
+<section class="tool-hero" style="background:linear-gradient(135deg,#f39c12,#d68910)">
+  <h1>📋 Organize PDF Pages</h1>
+  <p>Reorder pages in any order — type the new sequence and download</p>
+</section>
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📋</div>
+    <h3>Drop your PDF here</h3><p>or click to browse</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+  <div class="file-list" id="filePreview" style="display:none"></div>
+  <div class="options-panel" id="options" style="display:none">
+    <h3>📋 Set New Page Order</h3>
+    <p style="font-size:0.85rem;color:var(--gray);margin-bottom:0.5rem">Current PDF has <strong id="totalPages">—</strong> pages.</p>
+    <p style="font-size:0.85rem;color:var(--gray);margin-bottom:1.25rem">Current order: <strong id="currentOrder">—</strong></p>
+    <div style="margin-bottom:1rem">
+      <label class="opt-label" style="display:block;margin-bottom:0.5rem">New page order (comma-separated, e.g. 3, 1, 2, 4):</label>
+      <input type="text" id="newOrder" placeholder="e.g. 3, 1, 2, 4" style="width:100%;font-size:1rem;padding:12px 16px" />
+      <p style="font-size:0.8rem;color:var(--gray);margin-top:0.4rem">List every page number in the order you want them to appear. You can repeat pages or skip pages.</p>
+    </div>
+    <div id="orderPreview" style="display:none;padding:12px;background:#fffbf0;border-radius:8px;font-size:0.85rem;color:#b7791f;margin-top:0.5rem"></div>
+    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-primary btn-lg" id="organizeBtn">📋 Reorder Pages</button></div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div><h3>Pages Reordered!</h3><p id="resultMsg">Your reorganized PDF is ready</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download PDF</button>
+      <button class="btn btn-secondary" onclick="location.reload()">🔄 Organize Another</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+<footer><div class="footer-inner"><div class="footer-bottom"><span>© 2026 PDFWise · pdfwise.io</span>
+  <span><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></span></div></div></footer>
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null,resultBlob=null,totalPageCount=0;
+setupDropZone('dropZone','fileInput',async files=>{
+  selectedFile=files[0];
+  try{const PDFLib=await loadPdfLib();const buf=await selectedFile.arrayBuffer();const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});totalPageCount=doc.getPageCount();document.getElementById('totalPages').textContent=totalPageCount;document.getElementById('currentOrder').textContent=Array.from({length:totalPageCount},(_,i)=>i+1).join(', ');document.getElementById('newOrder').value=Array.from({length:totalPageCount},(_,i)=>i+1).join(', ');}catch(e){}
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML='<div class="file-item"><span class="file-icon">📄</span><span class="file-name">'+selectedFile.name+'</span><span class="file-size">'+formatBytes(selectedFile.size)+(totalPageCount?' · '+totalPageCount+' pages':'')+'</span><span class="file-remove" onclick="location.reload()">✕</span></div>';
+  document.getElementById('options').style.display='block';document.getElementById('dropZone').style.display='none';
+});
+document.getElementById('newOrder').addEventListener('input',function(){
+  const nums=this.value.split(',').map(s=>parseInt(s.trim())).filter(n=>!isNaN(n)&&n>0&&n<=totalPageCount);
+  const preview=document.getElementById('orderPreview');
+  if(nums.length){preview.style.display='block';preview.textContent='New order: '+nums.join(' → ')+' ('+nums.length+' pages in output)';}
+  else{preview.style.display='none';}
+});
+document.getElementById('organizeBtn').addEventListener('click',async()=>{
+  const nums=document.getElementById('newOrder').value.split(',').map(s=>parseInt(s.trim())).filter(n=>!isNaN(n)&&n>0&&n<=totalPageCount);
+  if(!nums.length){showAlert('alert','Please enter a valid page order.');return;}
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2000);
+  try{
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const srcDoc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    const newDoc=await PDFLib.PDFDocument.create();
+    const indices=nums.map(n=>n-1);
+    const pages=await newDoc.copyPages(srcDoc,indices);
+    pages.forEach(p=>newDoc.addPage(p));
+    const bytes=await newDoc.save();
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    document.getElementById('resultMsg').textContent='PDF reorganized with '+nums.length+' pages';
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(resultBlob)downloadBlob(resultBlob,'organized_'+selectedFile.name);});
+</script>
+</body></html>

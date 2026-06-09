@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Watermark to PDF Online Free | PDFWise</title>
+  <meta name="description" content="Add text watermarks to your PDF online for free. Customize font, color, position, and opacity. No signup required." />
+  <meta name="keywords" content="add watermark to pdf, pdf watermark online free, stamp pdf, text watermark pdf" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/watermark.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+    <div class="nav-links"><a href="compress.html">Compress</a><a href="merge.html">Merge</a><a href="protect.html">Protect</a><a href="rotate.html">Rotate</a></div>
+    <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+  </div>
+</nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+
+<section class="tool-hero" style="background:linear-gradient(135deg,#2980b9,#1a5276)">
+  <h1>💧 Add Watermark to PDF</h1>
+  <p>Stamp your brand, "Confidential", or any text onto your PDF pages</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📂</div>
+    <h3>Drop your PDF here</h3>
+    <p>or click to browse</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+
+  <div class="file-list" id="filePreview" style="display:none"></div>
+
+  <div class="options-panel" id="options" style="display:none">
+    <h3>💧 Watermark Settings</h3>
+    <div class="opt-row">
+      <div><div class="opt-label">Watermark Text</div></div>
+      <input type="text" id="wmText" value="CONFIDENTIAL" style="width:250px" placeholder="Enter watermark text" />
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Font Size</div></div>
+      <div class="slider-wrap">
+        <span style="font-size:0.8rem;color:var(--gray)">Small</span>
+        <input type="range" id="fontSize" min="20" max="100" value="48" />
+        <span style="font-size:0.8rem;color:var(--gray)">Large</span>
+        <strong id="fontSizeVal">48px</strong>
+      </div>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Opacity</div></div>
+      <div class="slider-wrap">
+        <span style="font-size:0.8rem;color:var(--gray)">Light</span>
+        <input type="range" id="opacity" min="10" max="90" value="30" />
+        <span style="font-size:0.8rem;color:var(--gray)">Dark</span>
+        <strong id="opacityVal">30%</strong>
+      </div>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Color</div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <label style="cursor:pointer"><input type="radio" name="wmColor" value="gray" checked /> Gray</label>
+        <label style="cursor:pointer"><input type="radio" name="wmColor" value="red" /> Red</label>
+        <label style="cursor:pointer"><input type="radio" name="wmColor" value="blue" /> Blue</label>
+        <label style="cursor:pointer"><input type="radio" name="wmColor" value="black" /> Black</label>
+      </div>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Position</div></div>
+      <select id="wmPosition">
+        <option value="center">Center (diagonal)</option>
+        <option value="top">Top center</option>
+        <option value="bottom">Bottom center</option>
+      </select>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Apply to</div></div>
+      <select id="wmPages">
+        <option value="all">All pages</option>
+        <option value="first">First page only</option>
+      </select>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-primary btn-lg" id="addWmBtn">💧 Add Watermark</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div>
+    <h3>Watermark Added!</h3>
+    <p>Your watermarked PDF is ready to download</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download PDF</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Watermark Another</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-bottom">
+  <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+  <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null,resultBlob=null;
+
+document.getElementById('fontSize').addEventListener('input',function(){document.getElementById('fontSizeVal').textContent=this.value+'px';});
+document.getElementById('opacity').addEventListener('input',function(){document.getElementById('opacityVal').textContent=this.value+'%';});
+
+setupDropZone('dropZone','fileInput',files=>{
+  selectedFile=files[0];
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML=`<div class="file-item"><span class="file-icon">📄</span><span class="file-name">${selectedFile.name}</span><span class="file-size">${formatBytes(selectedFile.size)}</span><span class="file-remove" onclick="location.reload()">✕</span></div>`;
+  document.getElementById('options').style.display='block';
+  document.getElementById('dropZone').style.display='none';
+});
+
+document.getElementById('addWmBtn').addEventListener('click',async()=>{
+  const text=document.getElementById('wmText').value.trim();
+  if(!text){showAlert('alert','Please enter watermark text.');return;}
+  const fontSize=parseInt(document.getElementById('fontSize').value);
+  const opacity=parseInt(document.getElementById('opacity').value)/100;
+  const colorKey=document.querySelector('input[name="wmColor"]:checked').value;
+  const colors={gray:{r:0.5,g:0.5,b:0.5},red:{r:0.8,g:0,b:0},blue:{r:0,g:0,b:0.8},black:{r:0,g:0,b:0}};
+  const col=colors[colorKey];
+  const position=document.getElementById('wmPosition').value;
+  const applyTo=document.getElementById('wmPages').value;
+
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',1800);
+  try{
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    const pages=doc.getPages();
+    const font=await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+    const targetPages=applyTo==='all'?pages:[pages[0]];
+
+    targetPages.forEach(page=>{
+      const {width,height}=page.getSize();
+      const textWidth=font.widthOfTextAtSize(text,fontSize);
+      let x,y,rotate=0;
+      if(position==='center'){x=(width-textWidth)/2;y=height/2;rotate=Math.atan2(height,width)*180/Math.PI;}
+      else if(position==='top'){x=(width-textWidth)/2;y=height-fontSize-20;}
+      else{x=(width-textWidth)/2;y=20;}
+
+      page.drawText(text,{
+        x,y,size:fontSize,font,
+        color:PDFLib.rgb(col.r,col.g,col.b),
+        opacity,
+        rotate:PDFLib.degrees(position==='center'?rotate:0),
+      });
+    });
+
+    const bytes=await doc.save();
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(resultBlob) downloadBlob(resultBlob,'watermarked_'+selectedFile.name);});
+document.getElementById('resetBtn').addEventListener('click',()=>location.reload());
+</script>
+</body>
+</html>

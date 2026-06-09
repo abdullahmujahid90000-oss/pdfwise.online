@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Split PDF Online Free – Extract Pages from PDF | PDFWise</title>
+  <meta name="description" content="Split PDF files online for free. Extract specific pages or split into multiple PDFs. No signup, no watermark. Instant download." />
+  <meta name="keywords" content="split pdf, split pdf online, extract pages from pdf, pdf splitter, divide pdf free" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/split.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+    <div class="nav-links"><a href="compress.html">Compress</a><a href="merge.html">Merge</a><a href="rotate.html">Rotate</a><a href="pdf-to-word.html">PDF→Word</a></div>
+    <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+  </div>
+</nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+
+<section class="tool-hero" style="background:linear-gradient(135deg,#e63946,#c1121f)">
+  <h1>✂️ Split PDF</h1>
+  <p>Extract specific pages or split your PDF into multiple files</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📂</div>
+    <h3>Drop your PDF here</h3>
+    <p>or click to browse from your device</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+
+  <div class="file-list" id="filePreview" style="display:none"></div>
+
+  <div class="options-panel" id="options" style="display:none">
+    <h3>✂️ Split Options</h3>
+    <div style="margin-bottom:1.25rem">
+      <p style="font-size:0.85rem;color:var(--gray);margin-bottom:0.5rem">Total pages: <strong id="totalPages">—</strong></p>
+    </div>
+
+    <div class="opt-row" style="flex-direction:column;align-items:flex-start;gap:1rem">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+        <input type="radio" name="splitMode" value="all" checked />
+        <div><div class="opt-label">Extract all pages as separate PDFs</div><div class="opt-sub">Each page becomes its own PDF file (downloaded as ZIP)</div></div>
+      </label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+        <input type="radio" name="splitMode" value="range" />
+        <div><div class="opt-label">Extract a page range</div><div class="opt-sub">Specify which pages to extract into one PDF</div></div>
+      </label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+        <input type="radio" name="splitMode" value="every" />
+        <div><div class="opt-label">Split every N pages</div><div class="opt-sub">Divide into equal chunks (downloaded as ZIP)</div></div>
+      </label>
+    </div>
+
+    <div id="rangeInput" style="display:none;margin-top:1rem">
+      <label class="opt-label">Page range (e.g. 1-3, 5, 7-9):</label>
+      <input type="text" id="pageRange" placeholder="e.g. 1-3, 5, 8-10" style="width:100%;margin-top:0.5rem" />
+    </div>
+    <div id="everyInput" style="display:none;margin-top:1rem;display:none">
+      <label class="opt-label">Split every:</label>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:0.5rem">
+        <input type="number" id="everyN" value="1" min="1" style="width:80px" />
+        <span style="color:var(--gray)">pages</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-primary btn-lg" id="splitBtn">✂️ Split PDF</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div>
+    <h3>PDF Split Successfully!</h3>
+    <p id="resultMsg">Your split PDFs are ready</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Split Another</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-bottom">
+  <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+  <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+// JSZip for multi-file downloads
+function loadJSZip() {
+  return new Promise((res,rej) => {
+    if(window.JSZip){res(window.JSZip);return;}
+    const s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+    s.onload=()=>res(window.JSZip);s.onerror=rej;
+    document.head.appendChild(s);
+  });
+}
+
+let selectedFile=null, totalPageCount=0, resultData=null, resultFilename='split.pdf';
+
+setupDropZone('dropZone','fileInput',files=>{selectedFile=files[0];loadPdfInfo();});
+
+async function loadPdfInfo(){
+  try{
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    totalPageCount=doc.getPageCount();
+    document.getElementById('totalPages').textContent=totalPageCount;
+    document.getElementById('filePreview').style.display='block';
+    document.getElementById('filePreview').innerHTML=`<div class="file-item"><span class="file-icon">📄</span><span class="file-name">${selectedFile.name}</span><span class="file-size">${formatBytes(selectedFile.size)} · ${totalPageCount} pages</span><span class="file-remove" onclick="location.reload()">✕</span></div>`;
+    document.getElementById('options').style.display='block';
+    document.getElementById('dropZone').style.display='none';
+  }catch(e){showAlert('alert','Could not read PDF: '+e.message);}
+}
+
+document.querySelectorAll('input[name="splitMode"]').forEach(r=>{
+  r.addEventListener('change',()=>{
+    document.getElementById('rangeInput').style.display = r.value==='range'?'block':'none';
+    document.getElementById('everyInput').style.display = r.value==='every'?'flex':'none';
+  });
+});
+
+document.getElementById('splitBtn').addEventListener('click',async()=>{
+  const mode = document.querySelector('input[name="splitMode"]:checked').value;
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2000);
+  try{
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const srcDoc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+
+    if(mode==='range'){
+      const rangeStr=document.getElementById('pageRange').value;
+      const pages=parsePageRange(rangeStr,totalPageCount);
+      if(!pages.length){showAlert('alert','Invalid page range.');clearInterval(t);document.getElementById('progressWrap').style.display='none';return;}
+      const newDoc=await PDFLib.PDFDocument.create();
+      const copied=await newDoc.copyPages(srcDoc,pages.map(p=>p-1));
+      copied.forEach(p=>newDoc.addPage(p));
+      const bytes=await newDoc.save();
+      resultData={type:'single',bytes};
+      resultFilename=`pages_${rangeStr.replace(/\s/g,'')}_pdfwise.pdf`;
+      document.getElementById('resultMsg').textContent=`Extracted ${pages.length} pages into one PDF`;
+    } else if(mode==='all'){
+      const zip=await loadJSZip();
+      const z=new zip();
+      for(let i=0;i<totalPageCount;i++){
+        const newDoc=await PDFLib.PDFDocument.create();
+        const [page]=await newDoc.copyPages(srcDoc,[i]);
+        newDoc.addPage(page);
+        const bytes=await newDoc.save();
+        z.file(`page_${i+1}.pdf`,bytes);
+      }
+      resultData={type:'zip',zip:z};
+      resultFilename=`split_all_pages.zip`;
+      document.getElementById('resultMsg').textContent=`${totalPageCount} individual PDFs ready in ZIP`;
+    } else {
+      const n=parseInt(document.getElementById('everyN').value)||1;
+      const zip=await loadJSZip();
+      const z=new zip();
+      let chunk=0;
+      for(let i=0;i<totalPageCount;i+=n){
+        chunk++;
+        const newDoc=await PDFLib.PDFDocument.create();
+        const indices=[];
+        for(let j=i;j<Math.min(i+n,totalPageCount);j++) indices.push(j);
+        const pages=await newDoc.copyPages(srcDoc,indices);
+        pages.forEach(p=>newDoc.addPage(p));
+        const bytes=await newDoc.save();
+        z.file(`part_${chunk}.pdf`,bytes);
+      }
+      resultData={type:'zip',zip:z};
+      resultFilename=`split_every${n}_pages.zip`;
+      document.getElementById('resultMsg').textContent=`Split into ${chunk} PDF parts`;
+    }
+
+    clearInterval(t);completeProgress('progressFill');
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+
+function parsePageRange(str,max){
+  const pages=new Set();
+  str.split(',').forEach(part=>{
+    part=part.trim();
+    if(part.includes('-')){const[a,b]=part.split('-').map(Number);for(let i=a;i<=Math.min(b,max);i++)if(i>0)pages.add(i);}
+    else{const n=parseInt(part);if(n>0&&n<=max)pages.add(n);}
+  });
+  return [...pages].sort((a,b)=>a-b);
+}
+
+document.getElementById('downloadBtn').addEventListener('click',async()=>{
+  if(!resultData)return;
+  if(resultData.type==='single'){
+    downloadBlob(new Blob([resultData.bytes],{type:'application/pdf'}),resultFilename);
+  } else {
+    const content=await resultData.zip.generateAsync({type:'blob'});
+    downloadBlob(content,resultFilename);
+  }
+});
+document.getElementById('resetBtn').addEventListener('click',()=>location.reload());
+</script>
+</body>
+</html>

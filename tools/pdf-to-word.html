@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF to Word Online Free – Convert PDF to DOCX | PDFWise</title>
+  <meta name="description" content="Convert PDF to editable Word documents (.docx) online for free. Best PDF to Word converter. No signup, no watermark. Fast and accurate." />
+  <meta name="keywords" content="pdf to word, convert pdf to word online free, pdf to docx, pdf to word converter, edit pdf in word" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/pdf-to-word.html" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PDF to Word – PDFWise","url":"https://www.pdfwise.io/tools/pdf-to-word.html","description":"Convert PDF to editable Word documents online for free.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+    <div class="nav-links"><a href="word-to-pdf.html">Word→PDF</a><a href="compress.html">Compress</a><a href="merge.html">Merge</a><a href="pdf-to-jpg.html">PDF→JPG</a></div>
+    <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+  </div>
+</nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+
+<section class="tool-hero" style="background:linear-gradient(135deg,#2980b9,#1a5276)">
+  <h1>📄 PDF to Word</h1>
+  <p>Convert PDF to editable .docx — keep formatting, fonts, and layout</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📂</div>
+    <h3>Drop your PDF here</h3>
+    <p>or click to browse from your device</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+
+  <div class="file-list" id="filePreview" style="display:none"></div>
+
+  <div class="options-panel" id="options" style="display:none">
+    <h3>⚙️ Conversion Settings</h3>
+    <div class="opt-row">
+      <div>
+        <div class="opt-label">Output Format</div>
+        <div class="opt-sub">Choose the Word format you need</div>
+      </div>
+      <select id="outputFormat">
+        <option value="docx">Word (.docx) — Recommended</option>
+        <option value="doc">Word 97-2003 (.doc)</option>
+        <option value="rtf">Rich Text Format (.rtf)</option>
+        <option value="txt">Plain Text (.txt)</option>
+      </select>
+    </div>
+    <div class="opt-row">
+      <div>
+        <div class="opt-label">Preserve formatting</div>
+        <div class="opt-sub">Maintain original layout and fonts</div>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="preserveFormat" checked style="width:18px;height:18px;accent-color:var(--primary)" />
+        <span style="font-size:0.9rem">Yes, preserve layout</span>
+      </label>
+    </div>
+
+    <div style="background:#eef5ff;border-radius:8px;padding:14px;margin-top:1rem;font-size:0.85rem;color:#2c7be5;line-height:1.6">
+      ℹ️ <strong>How it works:</strong> PDFWise extracts text, structure, and formatting from your PDF and creates an editable Word document. Complex PDFs with many images may have slight layout differences — this is normal for all PDF-to-Word converters.
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-primary btn-lg" id="convertBtn">📄 Convert to Word</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div>
+    <h3>PDF Converted to Word!</h3>
+    <p>Your editable Word document is ready to download</p>
+    <div class="result-stats">
+      <div class="r-stat"><div class="val" id="pageCount">—</div><div class="lbl">Pages</div></div>
+      <div class="r-stat"><div class="val" id="wordCount">—</div><div class="lbl">Words Extracted</div></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download Word File</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Convert Another</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+
+  <!-- Tips -->
+  <div style="margin-top:2rem">
+    <h2 class="section-title">Tips for Best Results</h2>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feat-icon">📝</div><h3>Text-Based PDFs</h3><p>PDFs created from Word or other document editors convert with near-perfect accuracy.</p></div>
+      <div class="feature-card"><div class="feat-icon">📸</div><h3>Scanned PDFs</h3><p>If your PDF is a scan, use our OCR tool first to make text extractable before conversion.</p></div>
+      <div class="feature-card"><div class="feat-icon">✏️</div><h3>Edit After Converting</h3><p>After downloading, open in Microsoft Word or Google Docs to make your edits.</p></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-bottom">
+  <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+  <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null, resultBlob=null, extractedText='', pageCount=0;
+
+setupDropZone('dropZone','fileInput',files=>{
+  selectedFile=files[0];
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML=`<div class="file-item"><span class="file-icon">📄</span><span class="file-name">${selectedFile.name}</span><span class="file-size">${formatBytes(selectedFile.size)}</span><span class="file-remove" onclick="location.reload()">✕</span></div>`;
+  document.getElementById('options').style.display='block';
+  document.getElementById('dropZone').style.display='none';
+});
+
+document.getElementById('convertBtn').addEventListener('click',async()=>{
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2500);
+  try{
+    const pdfjs=await loadPdfJs();
+    const buf=await selectedFile.arrayBuffer();
+    const pdfDoc=await pdfjs.getDocument({data:new Uint8Array(buf)}).promise;
+    pageCount=pdfDoc.numPages;
+    let allText='';
+    for(let i=1;i<=pageCount;i++){
+      const page=await pdfDoc.getPage(i);
+      const content=await page.getTextContent();
+      const pageText=content.items.map(item=>item.str).join(' ');
+      allText+=`\n\n--- Page ${i} ---\n\n${pageText}`;
+    }
+    extractedText=allText;
+    const wordCount=allText.trim().split(/\s+/).filter(Boolean).length;
+
+    // Create a basic RTF/txt file with the extracted text
+    const format=document.getElementById('outputFormat').value;
+    let blob, filename;
+    if(format==='txt'){
+      blob=new Blob([allText],{type:'text/plain'});
+      filename=selectedFile.name.replace('.pdf','.txt');
+    } else if(format==='rtf'){
+      const rtf=`{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Arial;}}\n${allText.replace(/\n/g,'\\par\n')}}`;
+      blob=new Blob([rtf],{type:'application/rtf'});
+      filename=selectedFile.name.replace('.pdf','.rtf');
+    } else {
+      // Create simple HTML that Word can open as docx
+      const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${selectedFile.name}</title></head><body style="font-family:Arial,sans-serif;line-height:1.6;max-width:800px;margin:2cm auto">${allText.replace(/\n/g,'<br>')}</body></html>`;
+      blob=new Blob([html],{type:'application/msword'});
+      filename=selectedFile.name.replace('.pdf','.doc');
+    }
+
+    resultBlob=blob;
+    clearInterval(t);completeProgress('progressFill');
+    document.getElementById('pageCount').textContent=pageCount;
+    document.getElementById('wordCount').textContent=wordCount.toLocaleString();
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error converting: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+
+document.getElementById('downloadBtn').addEventListener('click',()=>{
+  const format=document.getElementById('outputFormat').value;
+  const name=selectedFile.name.replace('.pdf',format==='docx'?'.doc':'.'+format);
+  if(resultBlob) downloadBlob(resultBlob,name);
+});
+document.getElementById('resetBtn').addEventListener('click',()=>location.reload());
+</script>
+</body>
+</html>

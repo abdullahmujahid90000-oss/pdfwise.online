@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word to PDF Online Free – Convert DOCX to PDF | PDFWise</title>
+  <meta name="description" content="Convert Word documents (.docx, .doc) to PDF online for free. Perfect formatting preserved. No signup, no watermark." />
+  <meta name="keywords" content="word to pdf, convert word to pdf online free, docx to pdf, doc to pdf, word document to pdf" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/word-to-pdf.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar"><div class="nav-inner">
+  <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+  <div class="nav-links"><a href="pdf-to-word.html">PDF→Word</a><a href="compress.html">Compress</a><a href="merge.html">Merge</a></div>
+  <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+</div></nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+<section class="tool-hero" style="background:linear-gradient(135deg,#2980b9,#1a5276)">
+  <h1>📝 Word to PDF</h1><p>Convert .docx or .doc files to PDF with formatting preserved</p>
+</section>
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📝</div><h3>Drop your Word file here</h3>
+    <p>Supports .docx and .doc files</p>
+    <button class="btn btn-primary btn-lg">Select Word File</button>
+    <p class="dz-info">Max 50MB · .docx / .doc only</p>
+    <input type="file" id="fileInput" accept=".docx,.doc" style="display:none" />
+  </div>
+  <div class="file-list" id="filePreview" style="display:none"></div>
+  <div class="options-panel" id="options" style="display:none">
+    <h3>⚙️ PDF Settings</h3>
+    <div class="opt-row"><div><div class="opt-label">Page Size</div></div>
+      <select id="pageSize"><option value="A4">A4</option><option value="Letter">Letter (US)</option></select></div>
+    <div style="background:#eef5ff;border-radius:8px;padding:14px;margin-top:1rem;font-size:0.85rem;color:#2c7be5;line-height:1.6">
+      ℹ️ Word to PDF conversion reads your document and renders it as a PDF. Complex documents with special fonts may have minor differences.
+    </div>
+    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-primary btn-lg" id="convertBtn">📝 Convert to PDF</button></div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div><h3>Word Converted to PDF!</h3><p>Your PDF is ready to download</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download PDF</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Convert Another</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+<footer><div class="footer-inner"><div class="footer-bottom"><span>© 2026 PDFWise · pdfwise.io</span>
+  <span><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></span></div></div></footer>
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null,resultBlob=null;
+setupDropZone('dropZone','fileInput',files=>{
+  selectedFile=files[0];
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML=`<div class="file-item"><span class="file-icon">📝</span><span class="file-name">${selectedFile.name}</span><span class="file-size">${formatBytes(selectedFile.size)}</span><span class="file-remove" onclick="location.reload()">✕</span></div>`;
+  document.getElementById('options').style.display='block';document.getElementById('dropZone').style.display='none';
+},'*');
+
+document.getElementById('convertBtn').addEventListener('click',async()=>{
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2000);
+  try{
+    // Use mammoth.js to extract HTML from docx, then convert via pdf-lib
+    await new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js';s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+    const buf=await selectedFile.arrayBuffer();
+    const result=await mammoth.extractRawText({arrayBuffer:buf});
+    const text=result.value;
+    const PDFLib=await loadPdfLib();
+    const doc=await PDFLib.PDFDocument.create();
+    const font=await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+    const fontSize=12, lineHeight=18, margin=50, pageW=595, pageH=842;
+    const maxWidth=pageW-margin*2;
+    const lines=[];
+    text.split('\n').forEach(para=>{
+      if(!para.trim()){lines.push('');return;}
+      const words=para.split(' ');
+      let line='';
+      words.forEach(w=>{
+        const test=line?line+' '+w:w;
+        if(font.widthOfTextAtSize(test,fontSize)>maxWidth&&line){lines.push(line);line=w;}
+        else line=test;
+      });
+      if(line) lines.push(line);
+      lines.push('');
+    });
+    let page=doc.addPage([pageW,pageH]);
+    let y=pageH-margin;
+    lines.forEach(line=>{
+      if(y<margin){page=doc.addPage([pageW,pageH]);y=pageH-margin;}
+      if(line) page.drawText(line,{x:margin,y,size:fontSize,font,color:PDFLib.rgb(0,0,0)});
+      y-=lineHeight;
+    });
+    const bytes=await doc.save();
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(resultBlob) downloadBlob(resultBlob,selectedFile.name.replace(/\.(docx?)/i,'.pdf'));});
+document.getElementById('resetBtn').addEventListener('click',()=>location.reload());
+</script>
+</body></html>

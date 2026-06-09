@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Page Numbers to PDF Online Free | PDFWise</title>
+  <meta name="description" content="Add page numbers to PDF online for free. Customize position, font size, and starting number. No signup, no watermark." />
+  <meta name="keywords" content="add page numbers to pdf, pdf page numbering, number pdf pages online free" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/page-numbers.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar"><div class="nav-inner">
+  <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+  <div class="nav-links"><a href="compress.html">Compress</a><a href="merge.html">Merge</a><a href="split.html">Split</a><a href="pdf-to-word.html">PDF to Word</a><a href="../blog/index.html">Blog</a><a href="../about.html">About</a></div>
+  <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+</div></nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+
+<section class="tool-hero" style="background:linear-gradient(135deg,#16a085,#0e6b58)">
+  <h1>🔢 Add Page Numbers</h1>
+  <p>Number every page of your PDF with your preferred position and style</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">🔢</div>
+    <h3>Drop your PDF here</h3>
+    <p>or click to browse from your device</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+  <div class="file-list" id="filePreview" style="display:none"></div>
+
+  <div class="options-panel" id="options" style="display:none">
+    <h3>⚙️ Page Number Settings</h3>
+    <p style="font-size:0.85rem;color:var(--gray);margin-bottom:1.25rem">Total pages: <strong id="totalPages">—</strong></p>
+
+    <div class="opt-row">
+      <div><div class="opt-label">Position</div><div class="opt-sub">Where to place the page number</div></div>
+      <select id="position">
+        <option value="bottom-center">Bottom Center (Recommended)</option>
+        <option value="bottom-right">Bottom Right</option>
+        <option value="bottom-left">Bottom Left</option>
+        <option value="top-center">Top Center</option>
+        <option value="top-right">Top Right</option>
+        <option value="top-left">Top Left</option>
+      </select>
+    </div>
+
+    <div class="opt-row">
+      <div><div class="opt-label">Format</div><div class="opt-sub">Number display style</div></div>
+      <select id="format">
+        <option value="n">1, 2, 3 ...</option>
+        <option value="page-n">Page 1, Page 2 ...</option>
+        <option value="n-of-total">1 of 10, 2 of 10 ...</option>
+      </select>
+    </div>
+
+    <div class="opt-row">
+      <div><div class="opt-label">Starting Number</div></div>
+      <input type="number" id="startNum" value="1" min="1" style="width:90px" />
+    </div>
+
+    <div class="opt-row">
+      <div><div class="opt-label">Font Size</div></div>
+      <div class="slider-wrap">
+        <span style="font-size:0.8rem;color:var(--gray)">Small</span>
+        <input type="range" id="fontSize" min="8" max="20" value="11" />
+        <span style="font-size:0.8rem;color:var(--gray)">Large</span>
+        <strong id="fontSizeVal">11px</strong>
+      </div>
+    </div>
+
+    <div class="opt-row">
+      <div><div class="opt-label">Skip First Page</div><div class="opt-sub">Don't number the cover page</div></div>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="skipFirst" style="width:18px;height:18px;accent-color:var(--primary)" />
+        <span style="font-size:0.9rem">Skip page 1</span>
+      </label>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-primary btn-lg" id="addNumBtn">🔢 Add Page Numbers</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div>
+    <h3>Page Numbers Added!</h3>
+    <p id="resultMsg">All pages have been numbered</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download PDF</button>
+      <button class="btn btn-secondary" onclick="location.reload()">🔄 Number Another</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+
+  <div style="margin-top:2rem">
+    <h2 class="section-title">Related Tools</h2>
+    <div class="tools-grid">
+      <a href="watermark.html" class="tool-card" style="--card-color:#2980b9;--card-bg:#f0f5ff"><div class="tool-icon">💧</div><h3>Watermark PDF</h3><p>Add text stamps</p></a>
+      <a href="compress.html" class="tool-card" style="--card-color:#e63946;--card-bg:#fff0f0"><div class="tool-icon">🗜️</div><h3>Compress PDF</h3><p>Reduce file size</p></a>
+      <a href="merge.html" class="tool-card" style="--card-color:#27ae60;--card-bg:#f0fff4"><div class="tool-icon">📎</div><h3>Merge PDF</h3><p>Combine PDFs</p></a>
+      <a href="rotate.html" class="tool-card" style="--card-color:#e67e22;--card-bg:#fff7f0"><div class="tool-icon">🔄</div><h3>Rotate PDF</h3><p>Fix orientation</p></a>
+    </div>
+  </div>
+</div>
+<footer><div class="footer-inner"><div class="footer-bottom">
+  <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+  <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+</div></div></footer>
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null, resultBlob=null, pageCount=0;
+document.getElementById('fontSize').addEventListener('input',function(){ document.getElementById('fontSizeVal').textContent=this.value+'px'; });
+
+setupDropZone('dropZone','fileInput',async files=>{
+  selectedFile=files[0];
+  try {
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    pageCount=doc.getPageCount();
+    document.getElementById('totalPages').textContent=pageCount;
+  } catch(e) {}
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML='<div class="file-item"><span class="file-icon">📄</span><span class="file-name">'+selectedFile.name+'</span><span class="file-size">'+formatBytes(selectedFile.size)+(pageCount?' · '+pageCount+' pages':'')+'</span><span class="file-remove" onclick="location.reload()">✕</span></div>';
+  document.getElementById('options').style.display='block';
+  document.getElementById('dropZone').style.display='none';
+});
+
+document.getElementById('addNumBtn').addEventListener('click',async()=>{
+  const position=document.getElementById('position').value;
+  const format=document.getElementById('format').value;
+  const startNum=parseInt(document.getElementById('startNum').value)||1;
+  const fontSize=parseInt(document.getElementById('fontSize').value)||11;
+  const skipFirst=document.getElementById('skipFirst').checked;
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2000);
+  try {
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    const font=await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+    const pages=doc.getPages();
+    const total=pages.length;
+    pages.forEach((page,i)=>{
+      if(skipFirst && i===0) return;
+      const {width,height}=page.getSize();
+      const num=startNum+i-(skipFirst?1:0);
+      let label='';
+      if(format==='n') label=String(num);
+      else if(format==='page-n') label='Page '+num;
+      else label=num+' of '+total;
+      const tw=font.widthOfTextAtSize(label,fontSize);
+      const margin=15;
+      let x,y;
+      const [vPos,hPos]=position.split('-');
+      y = vPos==='bottom' ? margin : height-margin-fontSize;
+      if(hPos==='center') x=(width-tw)/2;
+      else if(hPos==='right') x=width-tw-margin;
+      else x=margin;
+      page.drawText(label,{x,y,size:fontSize,font,color:PDFLib.rgb(0.2,0.2,0.2)});
+    });
+    const bytes=await doc.save();
+    clearInterval(t); completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    document.getElementById('resultMsg').textContent='Page numbers added to '+(skipFirst?total-1:total)+' pages';
+    setTimeout(()=>{ document.getElementById('options').style.display='none'; document.getElementById('resultBox').classList.add('show'); }, 400);
+  } catch(e) {
+    clearInterval(t);
+    showAlert('alert','Error: '+e.message);
+    document.getElementById('progressWrap').style.display='none';
+  }
+});
+document.getElementById('downloadBtn').addEventListener('click',()=>{ if(resultBlob) downloadBlob(resultBlob,'numbered_'+selectedFile.name); });
+</script>
+</body></html>

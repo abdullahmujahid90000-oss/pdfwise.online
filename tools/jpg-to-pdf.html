@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JPG to PDF Online Free – Convert Images to PDF | PDFWise</title>
+  <meta name="description" content="Convert JPG, PNG and images to PDF online for free. Combine multiple images into one PDF. No signup, no watermark. Fast and easy." />
+  <meta name="keywords" content="jpg to pdf, image to pdf, convert jpg to pdf online free, png to pdf, photos to pdf" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/jpg-to-pdf.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+    <div class="nav-links"><a href="compress.html">Compress</a><a href="merge.html">Merge</a><a href="pdf-to-jpg.html">PDF→JPG</a><a href="pdf-to-word.html">PDF→Word</a></div>
+    <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+  </div>
+</nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+
+<section class="tool-hero" style="background:linear-gradient(135deg,#e67e22,#ca6f1e)">
+  <h1>🖼️ JPG to PDF</h1>
+  <p>Turn any image — JPG, PNG, WEBP — into a PDF instantly. One image or many.</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">🖼️</div>
+    <h3>Drop images here</h3>
+    <p>JPG, PNG, WEBP — select multiple images at once</p>
+    <button class="btn btn-primary btn-lg">Select Images</button>
+    <p class="dz-info">Max 20MB per image · Supports JPG, PNG, WEBP, GIF</p>
+    <input type="file" id="fileInput" accept="image/*" multiple style="display:none" />
+  </div>
+
+  <div id="imagePreviewArea" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+      <strong style="color:var(--dark)">Images to convert:</strong>
+      <button class="btn btn-secondary" id="addMoreBtn" style="padding:6px 14px;font-size:0.82rem">+ Add More</button>
+    </div>
+    <div id="imageGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:1rem;margin-bottom:1.5rem"></div>
+    <input type="file" id="addMoreInput" accept="image/*" multiple style="display:none" />
+  </div>
+
+  <div class="options-panel" id="options" style="display:none">
+    <h3>⚙️ PDF Settings</h3>
+    <div class="opt-row">
+      <div><div class="opt-label">Page Size</div></div>
+      <select id="pageSize">
+        <option value="A4">A4 (Standard)</option>
+        <option value="Letter">Letter (US)</option>
+        <option value="fit">Fit to Image</option>
+      </select>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Orientation</div></div>
+      <select id="orientation">
+        <option value="portrait">Portrait</option>
+        <option value="landscape">Landscape</option>
+        <option value="auto">Auto (based on image)</option>
+      </select>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Margin</div></div>
+      <select id="margin">
+        <option value="0">No margin</option>
+        <option value="20">Small (20px)</option>
+        <option value="40" selected>Medium (40px)</option>
+        <option value="60">Large (60px)</option>
+      </select>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-primary btn-lg" id="convertBtn">🖼️ Convert to PDF</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div>
+    <h3>Images Converted to PDF!</h3>
+    <p id="resultMsg">Your PDF is ready to download</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download PDF</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Convert More</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-bottom">
+  <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+  <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+let images=[], resultBlob=null;
+
+function initDropZone(){
+  setupDropZone('dropZone','fileInput',files=>{ addImages(files); },'*');
+  document.getElementById('addMoreBtn').addEventListener('click',()=>document.getElementById('addMoreInput').click());
+  document.getElementById('addMoreInput').addEventListener('change',e=>addImages(Array.from(e.target.files)));
+}
+initDropZone();
+
+function addImages(files){
+  const imgs=files.filter(f=>f.type.startsWith('image/'));
+  images=[...images,...imgs];
+  renderGrid();
+}
+
+function renderGrid(){
+  if(!images.length) return;
+  document.getElementById('dropZone').style.display='none';
+  document.getElementById('imagePreviewArea').style.display='block';
+  document.getElementById('options').style.display='block';
+  const grid=document.getElementById('imageGrid');
+  grid.innerHTML=images.map((f,i)=>{
+    const url=URL.createObjectURL(f);
+    return `<div style="position:relative;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)">
+      <img src="${url}" style="width:100%;height:100px;object-fit:cover;display:block" />
+      <div style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.5);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;cursor:pointer" onclick="removeImg(${i})">✕</div>
+      <div style="padding:4px 6px;font-size:0.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--gray)">${f.name}</div>
+    </div>`;
+  }).join('');
+}
+
+function removeImg(i){ images.splice(i,1); if(!images.length){ location.reload(); } else renderGrid(); }
+
+document.getElementById('convertBtn').addEventListener('click',async()=>{
+  if(!images.length){showAlert('alert','Please add at least one image.');return;}
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2000);
+  try{
+    const PDFLib=await loadPdfLib();
+    const doc=await PDFLib.PDFDocument.create();
+    const pageSizeKey=document.getElementById('pageSize').value;
+    const orientation=document.getElementById('orientation').value;
+    const margin=parseInt(document.getElementById('margin').value);
+
+    for(const imgFile of images){
+      const imgBuf=await imgFile.arrayBuffer();
+      let embeddedImg;
+      if(imgFile.type==='image/png') embeddedImg=await doc.embedPng(imgBuf);
+      else embeddedImg=await doc.embedJpg(imgBuf);
+      const {width:iw,height:ih}=embeddedImg;
+
+      let pw,ph;
+      if(pageSizeKey==='fit'){ pw=iw+margin*2; ph=ih+margin*2; }
+      else if(pageSizeKey==='A4'){pw=595;ph=842;}
+      else{pw=612;ph=792;}
+
+      const isLandscape=orientation==='landscape'||(orientation==='auto'&&iw>ih);
+      if(isLandscape&&pageSizeKey!=='fit'){[pw,ph]=[ph,pw];}
+
+      const page=doc.addPage([pw,ph]);
+      const scale=Math.min((pw-margin*2)/iw,(ph-margin*2)/ih);
+      const dw=iw*scale,dh=ih*scale;
+      page.drawImage(embeddedImg,{x:(pw-dw)/2,y:(ph-dh)/2,width:dw,height:dh});
+    }
+
+    const bytes=await doc.save();
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    document.getElementById('resultMsg').textContent=`${images.length} image${images.length>1?'s':''} converted to PDF`;
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('imagePreviewArea').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(resultBlob) downloadBlob(resultBlob,'pdfwise_images.pdf');});
+document.getElementById('resetBtn').addEventListener('click',()=>location.reload());
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.pdfwise.io/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/about.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/contact.html</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/privacy.html</loc><priority>0.4</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/terms.html</loc><priority>0.4</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/blog/</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/blog/how-to-compress-pdf.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/blog/how-to-merge-pdf-files.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/compress.html</loc><priority>0.95</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/merge.html</loc><priority>0.95</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/split.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/rotate.html</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/watermark.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/protect.html</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/unlock.html</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/jpg-to-pdf.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/pdf-to-jpg.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/pdf-to-word.html</loc><priority>0.95</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/word-to-pdf.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/page-numbers.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/remove-pages.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/extract.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/organize.html</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/sign.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/redact.html</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/pdf-to-excel.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/pdf-to-ppt.html</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/excel-to-pdf.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.pdfwise.io/tools/ppt-to-pdf.html</loc><priority>0.75</priority><changefreq>monthly</changefreq></url>
+</urlset>

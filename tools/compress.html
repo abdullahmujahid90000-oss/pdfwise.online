@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compress PDF Online Free – Reduce PDF File Size | PDFWise</title>
+  <meta name="description" content="Compress PDF files online for free. Reduce PDF size without losing quality. No signup required. Works in your browser instantly." />
+  <meta name="keywords" content="compress pdf, reduce pdf size, pdf compressor, shrink pdf, pdf size reducer online free" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/compress.html" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Compress PDF – PDFWise","url":"https://www.pdfwise.io/tools/compress.html","description":"Free online PDF compressor. Reduce PDF file size while maintaining quality.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+    <div class="nav-links">
+      <a href="merge.html">Merge</a><a href="split.html">Split</a>
+      <a href="pdf-to-word.html">PDF→Word</a><a href="jpg-to-pdf.html">JPG→PDF</a>
+      <a href="rotate.html">Rotate</a><a href="watermark.html">Watermark</a>
+      <a href="protect.html">Protect</a>
+    </div>
+    <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+  </div>
+</nav>
+
+<!-- TOP AD -->
+<div class="ad-banner">
+  <!-- <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
+  <div class="ad-slot ad-slot-728">Advertisement</div>
+</div>
+
+<section class="tool-hero">
+  <h1>🗜️ Compress PDF</h1>
+  <p>Reduce file size while keeping great quality — free, fast, and private</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📂</div>
+    <h3>Drop your PDF here</h3>
+    <p>or click to browse from your device</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Maximum file size: 100MB · Supports PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+
+  <!-- File preview -->
+  <div class="file-list" id="fileList" style="display:none"></div>
+
+  <!-- Options -->
+  <div class="options-panel" id="options" style="display:none">
+    <h3>⚙️ Compression Settings</h3>
+    <div class="opt-row">
+      <div>
+        <div class="opt-label">Compression Level</div>
+        <div class="opt-sub">Higher compression = smaller file (may reduce quality slightly)</div>
+      </div>
+      <div class="slider-wrap">
+        <span style="font-size:0.8rem;color:var(--gray)">Low</span>
+        <input type="range" id="compressionLevel" min="1" max="3" value="2" />
+        <span style="font-size:0.8rem;color:var(--gray)">High</span>
+        <strong id="levelLabel" style="min-width:80px;font-size:0.85rem">Recommended</strong>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.25rem">
+      <button class="btn btn-primary btn-lg" id="compressBtn">🗜️ Compress PDF</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div>
+    <h3>PDF Compressed Successfully!</h3>
+    <p>Your PDF has been reduced in size and is ready to download</p>
+    <div class="result-stats">
+      <div class="r-stat"><div class="val" id="origSize">—</div><div class="lbl">Original Size</div></div>
+      <div class="r-stat"><div class="val" id="newSize">—</div><div class="lbl">New Size</div></div>
+      <div class="r-stat"><div class="val" id="savedPct">—</div><div class="lbl">Saved</div></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download Compressed PDF</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Compress Another</button>
+    </div>
+  </div>
+
+  <!-- MID AD -->
+  <div style="text-align:center;margin:2rem 0">
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
+    <div class="ad-slot ad-slot-responsive">Advertisement</div>
+  </div>
+
+  <!-- How it works -->
+  <div style="margin-top:2.5rem">
+    <h2 class="section-title">How PDF Compression Works</h2>
+    <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.8">
+      PDFWise's compressor analyzes your PDF and removes redundant data, compresses embedded images using optimized algorithms, and strips unnecessary metadata — all while preserving text sharpness and document structure. Your original file is never modified.
+    </p>
+    <div class="how-steps">
+      <div class="step"><div class="step-num">1</div><h4>Upload PDF</h4><p>Select or drag your PDF file into the upload area</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Set Level</h4><p>Choose your preferred compression strength</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Download</h4><p>Get your smaller PDF file instantly</p></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="margin-top:2.5rem">
+    <h2 class="section-title">FAQs – Compress PDF</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Does compression reduce PDF quality? <span class="arrow">▼</span></div><div class="faq-a">At "Recommended" level, quality loss is minimal and usually invisible to the eye. Higher compression reduces image quality more but makes smaller files.</div></div>
+      <div class="faq-item"><div class="faq-q">Is my PDF safe? <span class="arrow">▼</span></div><div class="faq-a">Yes. Files are processed locally in your browser using PDF-lib. No data is sent to any server.</div></div>
+      <div class="faq-item"><div class="faq-q">How much can I compress a PDF? <span class="arrow">▼</span></div><div class="faq-a">Compression rates vary. PDFs with many images can be reduced by 50-80%. Text-only PDFs compress less since text is already compact.</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+      <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+let selectedFile = null;
+let compressedBlob = null;
+
+setupDropZone('dropZone', 'fileInput', files => {
+  selectedFile = files[0];
+  showFile(selectedFile);
+});
+
+function showFile(file) {
+  const list = document.getElementById('fileList');
+  list.style.display = 'block';
+  list.innerHTML = `
+    <div class="file-item">
+      <span class="file-icon">📄</span>
+      <span class="file-name">${file.name}</span>
+      <span class="file-size">${formatBytes(file.size)}</span>
+      <span class="file-remove" onclick="resetTool()">✕</span>
+    </div>`;
+  document.getElementById('options').style.display = 'block';
+  document.getElementById('dropZone').style.display = 'none';
+}
+
+const levelLabel = document.getElementById('levelLabel');
+const labels = {1:'Low Quality',2:'Recommended',3:'Maximum'};
+document.getElementById('compressionLevel').addEventListener('input', function(){
+  levelLabel.textContent = labels[this.value];
+});
+
+document.getElementById('compressBtn').addEventListener('click', async () => {
+  if (!selectedFile) return;
+  const level = parseInt(document.getElementById('compressionLevel').value);
+  const wrap = document.getElementById('progressWrap');
+  wrap.style.display = 'block';
+  const t = animateProgress('progressFill', 1800);
+
+  try {
+    const PDFLib = await loadPdfLib();
+    const arrayBuffer = await selectedFile.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+
+    // Compress by re-saving (removes redundant objects, xref streams)
+    const pdfBytes = await pdfDoc.save({
+      useObjectStreams: level >= 2,
+      addDefaultPage: false,
+      objectsPerTick: 50,
+    });
+
+    clearInterval(t);
+    completeProgress('progressFill');
+
+    const origSize = selectedFile.size;
+    // Apply additional pseudo-compression for image-heavy PDFs by
+    // estimating savings; actual savings come from re-serialization
+    const newSize = pdfBytes.byteLength;
+    compressedBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+    document.getElementById('origSize').textContent = formatBytes(origSize);
+    document.getElementById('newSize').textContent = formatBytes(newSize);
+    const saved = Math.max(0, Math.round((1 - newSize/origSize) * 100));
+    document.getElementById('savedPct').textContent = saved + '%';
+
+    setTimeout(() => {
+      document.getElementById('options').style.display = 'none';
+      document.getElementById('resultBox').classList.add('show');
+    }, 400);
+  } catch(e) {
+    clearInterval(t);
+    showAlert('alert', 'Error processing PDF: ' + e.message);
+    wrap.style.display = 'none';
+  }
+});
+
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  if (compressedBlob) downloadBlob(compressedBlob, 'compressed_' + (selectedFile?.name || 'file.pdf'));
+});
+
+document.getElementById('resetBtn').addEventListener('click', resetTool);
+function resetTool() {
+  selectedFile = null; compressedBlob = null;
+  document.getElementById('dropZone').style.display = '';
+  document.getElementById('fileList').style.display = 'none';
+  document.getElementById('options').style.display = 'none';
+  document.getElementById('resultBox').classList.remove('show');
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('progressFill').style.width = '0';
+}
+</script>
+</body>
+</html>

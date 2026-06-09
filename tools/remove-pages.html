@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remove Pages from PDF Online Free | PDFWise</title>
+  <meta name="description" content="Delete unwanted pages from your PDF online for free. Remove one or multiple pages instantly. No signup required." />
+  <meta name="keywords" content="remove pages from pdf, delete pdf pages, pdf page remover online free" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/remove-pages.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar"><div class="nav-inner">
+  <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+  <div class="nav-links"><a href="split.html">Split PDF</a><a href="extract.html">Extract Pages</a><a href="merge.html">Merge</a><a href="compress.html">Compress</a></div>
+  <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+</div></nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement · 728x90 (Replace with AdSense)</div></div>
+<section class="tool-hero" style="background:linear-gradient(135deg,#9b59b6,#6c3483)">
+  <h1>🗑️ Remove Pages from PDF</h1>
+  <p>Delete unwanted pages from your PDF in seconds — free, no signup</p>
+</section>
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">🗑️</div>
+    <h3>Drop your PDF here</h3><p>or click to browse</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+  <div class="file-list" id="filePreview" style="display:none"></div>
+  <div class="options-panel" id="options" style="display:none">
+    <h3>🗑️ Pages to Remove</h3>
+    <p style="font-size:0.85rem;color:var(--gray);margin-bottom:1.25rem">Total pages: <strong id="totalPages">—</strong></p>
+    <div style="margin-bottom:1rem">
+      <label class="opt-label" style="display:block;margin-bottom:0.5rem">Enter page numbers to DELETE (e.g. 1, 3-5, 7):</label>
+      <input type="text" id="removeRange" placeholder="e.g. 2, 5-8, 10" style="width:100%;font-size:1rem;padding:12px 16px" />
+      <p style="font-size:0.8rem;color:var(--gray);margin-top:0.4rem">All other pages will be kept in the output file.</p>
+    </div>
+    <div id="pagePreview" style="display:none;margin-top:0.75rem;padding:12px;background:#fff5f5;border-radius:8px;font-size:0.85rem;color:#c0392b"></div>
+    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-primary btn-lg" id="removeBtn">🗑️ Remove Pages</button></div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div><h3>Pages Removed!</h3><p id="resultMsg">Your PDF is ready</p>
+    <div class="result-stats">
+      <div class="r-stat"><div class="val" id="removedCount">—</div><div class="lbl">Pages Removed</div></div>
+      <div class="r-stat"><div class="val" id="remainingCount">—</div><div class="lbl">Pages Remaining</div></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download PDF</button>
+      <button class="btn btn-secondary" onclick="location.reload()">🔄 Remove More</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+<footer><div class="footer-inner"><div class="footer-bottom"><span>© 2026 PDFWise · pdfwise.io</span>
+  <span><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></span></div></div></footer>
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null,resultBlob=null,totalPageCount=0;
+setupDropZone('dropZone','fileInput',async files=>{
+  selectedFile=files[0];
+  try{const PDFLib=await loadPdfLib();const buf=await selectedFile.arrayBuffer();const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});totalPageCount=doc.getPageCount();document.getElementById('totalPages').textContent=totalPageCount;}catch(e){}
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML='<div class="file-item"><span class="file-icon">📄</span><span class="file-name">'+selectedFile.name+'</span><span class="file-size">'+formatBytes(selectedFile.size)+(totalPageCount?' · '+totalPageCount+' pages':'')+'</span><span class="file-remove" onclick="location.reload()">✕</span></div>';
+  document.getElementById('options').style.display='block';document.getElementById('dropZone').style.display='none';
+});
+function parseRange(str,max){const pages=new Set();str.split(',').forEach(part=>{part=part.trim();if(part.includes('-')){const[a,b]=part.split('-').map(Number);for(let i=a;i<=Math.min(b,max);i++)if(i>0)pages.add(i);}else{const n=parseInt(part);if(n>0&&n<=max)pages.add(n);}});return[...pages].sort((a,b)=>a-b);}
+document.getElementById('removeRange').addEventListener('input',function(){
+  if(!totalPageCount)return;
+  const toRemove=parseRange(this.value,totalPageCount);
+  const preview=document.getElementById('pagePreview');
+  if(toRemove.length){preview.style.display='block';preview.textContent='Will DELETE pages: '+toRemove.join(', ')+' ('+toRemove.length+' pages). Keeping '+(totalPageCount-toRemove.length)+' pages.';}
+  else{preview.style.display='none';}
+});
+document.getElementById('removeBtn').addEventListener('click',async()=>{
+  const rangeStr=document.getElementById('removeRange').value.trim();
+  if(!rangeStr){showAlert('alert','Please enter page numbers to remove.');return;}
+  const toRemove=parseRange(rangeStr,totalPageCount);
+  if(!toRemove.length){showAlert('alert','No valid page numbers found.');return;}
+  if(toRemove.length>=totalPageCount){showAlert('alert','Cannot remove all pages. Keep at least 1.');return;}
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2000);
+  try{
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const srcDoc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    const newDoc=await PDFLib.PDFDocument.create();
+    const removeSet=new Set(toRemove);
+    const keepIndices=[];
+    for(let i=1;i<=totalPageCount;i++)if(!removeSet.has(i))keepIndices.push(i-1);
+    const pages=await newDoc.copyPages(srcDoc,keepIndices);
+    pages.forEach(p=>newDoc.addPage(p));
+    const bytes=await newDoc.save();
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    document.getElementById('removedCount').textContent=toRemove.length;
+    document.getElementById('remainingCount').textContent=keepIndices.length;
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(resultBlob)downloadBlob(resultBlob,'edited_'+selectedFile.name);});
+</script>
+</body></html>

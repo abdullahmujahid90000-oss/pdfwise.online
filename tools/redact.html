@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redact PDF Online Free – Black Out Sensitive Text | PDFWise</title>
+  <meta name="description" content="Permanently redact sensitive information from PDF files online for free. Black out text and data. GDPR compliant. No signup." />
+  <meta name="keywords" content="redact pdf, pdf redaction online free, remove text from pdf, black out pdf text" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/redact.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar"><div class="nav-inner">
+  <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+  <div class="nav-links"><a href="protect.html">Protect</a><a href="watermark.html">Watermark</a><a href="compress.html">Compress</a></div>
+  <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+</div></nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement · 728x90 (Replace with AdSense)</div></div>
+<section class="tool-hero" style="background:linear-gradient(135deg,#c0392b,#922b21)">
+  <h1>⬛ Redact PDF</h1>
+  <p>Permanently black out sensitive words or phrases from your PDF</p>
+</section>
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">⬛</div>
+    <h3>Drop your PDF here</h3><p>or click to browse</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only · Processing is local in your browser</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+  <div class="file-list" id="filePreview" style="display:none"></div>
+  <div class="options-panel" id="options" style="display:none">
+    <h3>⬛ Text to Redact</h3>
+    <div style="margin-bottom:1rem">
+      <label class="opt-label" style="display:block;margin-bottom:0.5rem">Enter words or phrases to redact (one per line):</label>
+      <textarea id="redactTerms" rows="5" placeholder="e.g.&#10;John Smith&#10;john@email.com&#10;123-456-7890&#10;Confidential" style="width:100%;padding:12px;border:2px solid var(--gray-light);border-radius:8px;font-size:0.9rem;resize:vertical;outline:none;font-family:inherit"></textarea>
+      <p style="font-size:0.8rem;color:var(--gray);margin-top:0.4rem">Each line is treated as a separate term to find and black out. Case-insensitive.</p>
+    </div>
+    <div class="opt-row">
+      <div><div class="opt-label">Redaction Style</div></div>
+      <select id="redactStyle">
+        <option value="black">Black box (standard)</option>
+        <option value="white">White box (invisible)</option>
+      </select>
+    </div>
+    <div style="background:#fff0f0;border-radius:8px;padding:12px;margin-top:1rem;font-size:0.82rem;color:#c0392b;line-height:1.6">
+      ⚠️ <strong>Note:</strong> This tool redacts text by drawing opaque boxes over matching text locations. For maximum security on sensitive documents, verify the redacted PDF before sharing.
+    </div>
+    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-primary btn-lg" id="redactBtn">⬛ Apply Redactions</button></div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div><h3>PDF Redacted!</h3><p id="resultMsg">Sensitive information has been blacked out</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download Redacted PDF</button>
+      <button class="btn btn-secondary" onclick="location.reload()">🔄 Redact Another</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+<footer><div class="footer-inner"><div class="footer-bottom"><span>© 2026 PDFWise · pdfwise.io</span>
+  <span><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></span></div></div></footer>
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null,resultBlob=null;
+setupDropZone('dropZone','fileInput',files=>{
+  selectedFile=files[0];
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML='<div class="file-item"><span class="file-icon">📄</span><span class="file-name">'+selectedFile.name+'</span><span class="file-size">'+formatBytes(selectedFile.size)+'</span><span class="file-remove" onclick="location.reload()">✕</span></div>';
+  document.getElementById('options').style.display='block';document.getElementById('dropZone').style.display='none';
+});
+document.getElementById('redactBtn').addEventListener('click',async()=>{
+  const terms=document.getElementById('redactTerms').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if(!terms.length){showAlert('alert','Please enter at least one word or phrase to redact.');return;}
+  const style=document.getElementById('redactStyle').value;
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2500);
+  try{
+    const pdfjs=await loadPdfJs();
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    // Load with pdfjs to find text positions
+    const pdfDoc=await pdfjs.getDocument({data:new Uint8Array(buf)}).promise;
+    const editDoc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    const pages=editDoc.getPages();
+    let totalRedacted=0;
+    for(let pi=0;pi<pdfDoc.numPages;pi++){
+      const page=await pdfDoc.getPage(pi+1);
+      const content=await page.getTextContent();
+      const viewport=page.getViewport({scale:1});
+      const pdfPage=pages[pi];
+      const{height}=pdfPage.getSize();
+      const color=style==='black'?PDFLib.rgb(0,0,0):PDFLib.rgb(1,1,1);
+      content.items.forEach(item=>{
+        const text=item.str;
+        terms.forEach(term=>{
+          if(text.toLowerCase().includes(term.toLowerCase())){
+            const[a,b,c,d,tx,ty]=item.transform;
+            const w=item.width||60, h=item.height||12;
+            const pdfY=height-(ty+h);
+            pdfPage.drawRectangle({x:tx,y:pdfY,width:w,height:h+2,color,borderColor:color,borderWidth:0});
+            totalRedacted++;
+          }
+        });
+      });
+    }
+    const bytes=await editDoc.save();
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    document.getElementById('resultMsg').textContent=totalRedacted+' instance(s) redacted across '+pdfDoc.numPages+' page(s)';
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(resultBlob)downloadBlob(resultBlob,'redacted_'+selectedFile.name);});
+</script>
+</body></html>

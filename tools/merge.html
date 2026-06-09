@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merge PDF Online Free – Combine PDF Files | PDFWise</title>
+  <meta name="description" content="Merge multiple PDF files into one online for free. Combine PDFs in any order. No signup, no watermark. Works instantly in your browser." />
+  <meta name="keywords" content="merge pdf, combine pdf, join pdf files, merge pdf online free, pdf combiner" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/merge.html" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Merge PDF – PDFWise","url":"https://www.pdfwise.io/tools/merge.html","description":"Free online PDF merger. Combine multiple PDF files into one.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+    <div class="nav-links">
+      <a href="compress.html">Compress</a><a href="split.html">Split</a>
+      <a href="pdf-to-word.html">PDF→Word</a><a href="jpg-to-pdf.html">JPG→PDF</a>
+      <a href="rotate.html">Rotate</a><a href="watermark.html">Watermark</a>
+    </div>
+    <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+  </div>
+</nav>
+
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+
+<section class="tool-hero" style="background:linear-gradient(135deg,#27ae60,#1a7a44)">
+  <h1>📎 Merge PDF Files</h1>
+  <p>Combine multiple PDFs into a single file — drag to reorder, then merge</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📂</div>
+    <h3>Drop PDF files here</h3>
+    <p>Upload multiple PDFs — you can reorder them before merging</p>
+    <button class="btn btn-primary btn-lg">Select PDF Files</button>
+    <p class="dz-info">Hold Ctrl/Cmd to select multiple files · Max 100MB each</p>
+    <input type="file" id="fileInput" accept=".pdf" multiple style="display:none" />
+  </div>
+
+  <div id="fileList" class="file-list" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+      <strong style="font-size:0.9rem;color:var(--dark)">Files to merge (drag to reorder):</strong>
+      <button class="btn btn-secondary" id="addMoreBtn" style="padding:6px 16px;font-size:0.82rem">+ Add More</button>
+    </div>
+    <div id="sortableList"></div>
+    <input type="file" id="addMoreInput" accept=".pdf" multiple style="display:none" />
+  </div>
+
+  <div id="mergeActions" style="display:none;text-align:center;margin-top:1.5rem">
+    <button class="btn btn-success btn-lg" id="mergeBtn">📎 Merge PDFs</button>
+    <p style="font-size:0.8rem;color:var(--gray);margin-top:0.75rem">Files will be merged in the order shown above</p>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div>
+    <h3>PDFs Merged Successfully!</h3>
+    <p>Your combined PDF is ready to download</p>
+    <div class="result-stats">
+      <div class="r-stat"><div class="val" id="pageCount">—</div><div class="lbl">Total Pages</div></div>
+      <div class="r-stat"><div class="val" id="fileCount">—</div><div class="lbl">Files Merged</div></div>
+      <div class="r-stat"><div class="val" id="finalSize">—</div><div class="lbl">File Size</div></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download Merged PDF</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Merge More PDFs</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+
+  <div style="margin-top:2rem">
+    <h2 class="section-title">How to Merge PDFs</h2>
+    <div class="how-steps">
+      <div class="step"><div class="step-num">1</div><h4>Upload Files</h4><p>Select multiple PDF files at once or add them one by one</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Reorder (Optional)</h4><p>Drag files to set the order they'll appear in the merged PDF</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Merge & Download</h4><p>Click Merge and download your combined PDF instantly</p></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-bottom">
+  <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+  <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+let files = [];
+let mergedBlob = null;
+
+setupDropZone('dropZone', 'fileInput', addFiles);
+document.getElementById('addMoreBtn').addEventListener('click', () => document.getElementById('addMoreInput').click());
+document.getElementById('addMoreInput').addEventListener('change', e => addFiles(Array.from(e.target.files)));
+
+function addFiles(newFiles) {
+  files = [...files, ...newFiles.filter(f => f.name.toLowerCase().endsWith('.pdf'))];
+  renderFileList();
+}
+
+function renderFileList() {
+  if (!files.length) return;
+  document.getElementById('dropZone').style.display = 'none';
+  document.getElementById('fileList').style.display = 'block';
+  document.getElementById('mergeActions').style.display = 'block';
+
+  const list = document.getElementById('sortableList');
+  list.innerHTML = files.map((f, i) => `
+    <div class="file-item" data-idx="${i}">
+      <span class="file-icon">📄</span>
+      <span class="file-name">${f.name}</span>
+      <span class="file-size">${formatBytes(f.size)}</span>
+      <span style="cursor:grab;font-size:1.2rem;color:var(--gray);padding:0 8px">⠿</span>
+      <span class="file-remove" onclick="removeFile(${i})">✕</span>
+    </div>`).join('');
+}
+
+function removeFile(idx) {
+  files.splice(idx, 1);
+  if (!files.length) { document.getElementById('dropZone').style.display=''; document.getElementById('fileList').style.display='none'; document.getElementById('mergeActions').style.display='none'; }
+  else renderFileList();
+}
+
+document.getElementById('mergeBtn').addEventListener('click', async () => {
+  if (files.length < 2) { showAlert('alert','Please add at least 2 PDF files to merge.'); return; }
+  document.getElementById('progressWrap').style.display = 'block';
+  const t = animateProgress('progressFill', 2000);
+  try {
+    const PDFLib = await loadPdfLib();
+    const merged = await PDFLib.PDFDocument.create();
+    let totalPages = 0;
+    for (const file of files) {
+      const buf = await file.arrayBuffer();
+      const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
+      const pages = await merged.copyPages(doc, doc.getPageIndices());
+      pages.forEach(p => { merged.addPage(p); totalPages++; });
+    }
+    const pdfBytes = await merged.save();
+    clearInterval(t); completeProgress('progressFill');
+    mergedBlob = new Blob([pdfBytes], { type:'application/pdf' });
+    document.getElementById('pageCount').textContent = totalPages;
+    document.getElementById('fileCount').textContent = files.length;
+    document.getElementById('finalSize').textContent = formatBytes(pdfBytes.byteLength);
+    setTimeout(() => {
+      document.getElementById('mergeActions').style.display = 'none';
+      document.getElementById('fileList').style.display = 'none';
+      document.getElementById('resultBox').classList.add('show');
+    }, 400);
+  } catch(e) {
+    clearInterval(t);
+    showAlert('alert', 'Error merging PDFs: ' + e.message);
+    document.getElementById('progressWrap').style.display = 'none';
+  }
+});
+
+document.getElementById('downloadBtn').addEventListener('click', () => { if(mergedBlob) downloadBlob(mergedBlob,'merged_pdfwise.pdf'); });
+document.getElementById('resetBtn').addEventListener('click', () => {
+  files = []; mergedBlob = null;
+  document.getElementById('dropZone').style.display = '';
+  document.getElementById('fileList').style.display = 'none';
+  document.getElementById('mergeActions').style.display = 'none';
+  document.getElementById('resultBox').classList.remove('show');
+});
+</script>
+</body>
+</html>

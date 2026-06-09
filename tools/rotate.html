@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rotate PDF Online Free – Rotate PDF Pages | PDFWise</title>
+  <meta name="description" content="Rotate PDF pages online for free. Rotate one, several, or all pages 90° or 180°. No signup required. Instant download." />
+  <meta name="keywords" content="rotate pdf, rotate pdf pages online, pdf rotator free, turn pdf pages" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/rotate.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+    <div class="nav-links"><a href="compress.html">Compress</a><a href="merge.html">Merge</a><a href="split.html">Split</a><a href="watermark.html">Watermark</a></div>
+    <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+  </div>
+</nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+
+<section class="tool-hero" style="background:linear-gradient(135deg,#e67e22,#d35400)">
+  <h1>🔄 Rotate PDF</h1>
+  <p>Rotate pages left, right, or 180° — all pages or specific ones</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📂</div>
+    <h3>Drop your PDF here</h3>
+    <p>or click to select from your device</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+
+  <div class="file-list" id="filePreview" style="display:none"></div>
+
+  <div class="options-panel" id="options" style="display:none">
+    <h3>🔄 Rotation Settings</h3>
+    <p style="font-size:0.85rem;color:var(--gray);margin-bottom:1rem">Total pages: <strong id="totalPages">—</strong></p>
+
+    <div class="opt-row">
+      <div><div class="opt-label">Which pages to rotate?</div></div>
+      <select id="pageSelect">
+        <option value="all">All pages</option>
+        <option value="odd">Odd pages only</option>
+        <option value="even">Even pages only</option>
+        <option value="custom">Custom range</option>
+      </select>
+    </div>
+
+    <div id="customRange" style="display:none;margin-top:0.75rem">
+      <label class="opt-label">Page range (e.g. 1-3, 5):</label>
+      <input type="text" id="pageRange" placeholder="1-3, 5, 8" style="width:100%;margin-top:0.5rem" />
+    </div>
+
+    <div class="opt-row" style="margin-top:1.25rem">
+      <div><div class="opt-label">Rotation direction</div></div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:8px 16px;border:2px solid var(--gray-light);border-radius:8px;font-weight:500">
+          <input type="radio" name="direction" value="90" checked /> ↩ 90° Left
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:8px 16px;border:2px solid var(--gray-light);border-radius:8px;font-weight:500">
+          <input type="radio" name="direction" value="-90" /> ↪ 90° Right
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:8px 16px;border:2px solid var(--gray-light);border-radius:8px;font-weight:500">
+          <input type="radio" name="direction" value="180" /> ↕ 180°
+        </label>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-primary btn-lg" id="rotateBtn">🔄 Rotate PDF</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div>
+    <h3>PDF Rotated Successfully!</h3>
+    <p id="resultMsg">Your rotated PDF is ready to download</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download Rotated PDF</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Rotate Another</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-bottom">
+  <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+  <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null, resultBlob=null, pageCount=0;
+
+setupDropZone('dropZone','fileInput',async files=>{
+  selectedFile=files[0];
+  const PDFLib=await loadPdfLib();
+  const buf=await selectedFile.arrayBuffer();
+  const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+  pageCount=doc.getPageCount();
+  document.getElementById('totalPages').textContent=pageCount;
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML=`<div class="file-item"><span class="file-icon">📄</span><span class="file-name">${selectedFile.name}</span><span class="file-size">${formatBytes(selectedFile.size)} · ${pageCount} pages</span><span class="file-remove" onclick="location.reload()">✕</span></div>`;
+  document.getElementById('options').style.display='block';
+  document.getElementById('dropZone').style.display='none';
+});
+
+document.getElementById('pageSelect').addEventListener('change',function(){
+  document.getElementById('customRange').style.display=this.value==='custom'?'block':'none';
+});
+
+document.getElementById('rotateBtn').addEventListener('click',async()=>{
+  const deg=parseInt(document.querySelector('input[name="direction"]:checked').value);
+  const mode=document.getElementById('pageSelect').value;
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',1500);
+  try{
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    const pages=doc.getPages();
+    let targetIndices=[];
+    if(mode==='all') targetIndices=[...Array(pages.length).keys()];
+    else if(mode==='odd') targetIndices=pages.map((_,i)=>i).filter(i=>i%2===0);
+    else if(mode==='even') targetIndices=pages.map((_,i)=>i).filter(i=>i%2!==0);
+    else {
+      const rangeStr=document.getElementById('pageRange').value;
+      const nums=rangeStr.split(',').flatMap(p=>{p=p.trim();if(p.includes('-')){const[a,b]=p.split('-').map(Number);return Array.from({length:b-a+1},(_,i)=>a+i-1);}return[parseInt(p)-1];});
+      targetIndices=nums.filter(i=>i>=0&&i<pages.length);
+    }
+    targetIndices.forEach(i=>pages[i].setRotation(PDFLib.degrees((pages[i].getRotation().angle+deg+360)%360)));
+    const bytes=await doc.save();
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    document.getElementById('resultMsg').textContent=`Rotated ${targetIndices.length} pages successfully`;
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+
+document.getElementById('downloadBtn').addEventListener('click',()=>{ if(resultBlob) downloadBlob(resultBlob,'rotated_'+selectedFile.name); });
+document.getElementById('resetBtn').addEventListener('click',()=>location.reload());
+</script>
+</body>
+</html>

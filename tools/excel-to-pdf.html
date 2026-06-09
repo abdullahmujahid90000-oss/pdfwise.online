@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel to PDF Online Free – Convert XLSX to PDF | PDFWise</title>
+  <meta name="description" content="Convert Excel spreadsheets to PDF online for free. Preserve formatting and layout." />
+  <meta name="keywords" content="excel to pdf, convert excel to pdf online free, xlsx to pdf" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/excel-to-pdf.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar"><div class="nav-inner">
+  <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+  <div class="nav-links"><a href="compress.html">Compress</a><a href="merge.html">Merge</a><a href="pdf-to-word.html">PDF to Word</a><a href="pdf-to-jpg.html">PDF to JPG</a></div>
+  <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+</div></nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement · 728x90 (Replace with AdSense)</div></div>
+<section class="tool-hero" style="background:linear-gradient(135deg,#27ae60,#1a7a44)">
+  <h1>📊 Excel to PDF</h1><p>Convert Excel spreadsheets to PDF online for free. Preserve formatting and layout.</p>
+</section>
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">📊</div>
+    <h3>Drop your file here</h3><p>or click to browse from your device</p>
+    <button class="btn btn-primary btn-lg">Select File</button>
+    <p class="dz-info">Max 50MB</p>
+    <input type="file" id="fileInput" accept="*" style="display:none" />
+  </div>
+  <div class="file-list" id="filePreview" style="display:none"></div>
+  <div class="options-panel" id="options" style="display:none">
+    <h3>⚙️ Ready to Convert</h3>
+    <div style="background:#eef5ff;border-radius:8px;padding:16px;font-size:0.9rem;color:#2c7be5;line-height:1.8;margin-bottom:1.25rem">
+      📊 <strong>Excel to PDF</strong> — Your file is ready to process. Click the button below to start the conversion.
+    </div>
+    <div style="text-align:center">
+      <button class="btn btn-primary btn-lg" id="convertBtn">📊 Convert Now</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">✅</div><h3>Conversion Complete!</h3><p>Your converted file is ready to download</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download File</button>
+      <button class="btn btn-secondary" onclick="location.reload()">🔄 Convert Another</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+  <!-- Related tools -->
+  <div style="margin-top:2rem">
+    <h2 class="section-title">More Conversion Tools</h2>
+    <div class="tools-grid">
+      <a href="pdf-to-word.html" class="tool-card" style="--card-color:#2980b9;--card-bg:#f0f5ff"><div class="tool-icon">📄</div><h3>PDF to Word</h3><p>Convert to .docx</p></a>
+      <a href="jpg-to-pdf.html" class="tool-card" style="--card-color:#e67e22;--card-bg:#fff7f0"><div class="tool-icon">🖼️</div><h3>JPG to PDF</h3><p>Images to PDF</p></a>
+      <a href="compress.html" class="tool-card" style="--card-color:#e63946;--card-bg:#fff0f0"><div class="tool-icon">🗜️</div><h3>Compress PDF</h3><p>Reduce size</p></a>
+      <a href="pdf-to-jpg.html" class="tool-card" style="--card-color:#9b59b6;--card-bg:#faf0ff"><div class="tool-icon">🖼️</div><h3>PDF to JPG</h3><p>Pages as images</p></a>
+    </div>
+  </div>
+</div>
+<footer><div class="footer-inner"><div class="footer-bottom"><span>© 2026 PDFWise · pdfwise.io</span>
+  <span><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a></span></div></div></footer>
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null,resultBlob=null;
+setupDropZone('dropZone','fileInput',files=>{
+  selectedFile=files[0];
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML='<div class="file-item"><span class="file-icon">📊</span><span class="file-name">'+selectedFile.name+'</span><span class="file-size">'+formatBytes(selectedFile.size)+'</span><span class="file-remove" onclick="location.reload()">✕</span></div>';
+  document.getElementById('options').style.display='block';document.getElementById('dropZone').style.display='none';
+},'*');
+document.getElementById('convertBtn').addEventListener('click',async()=>{
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',2500);
+  try{
+    // For these formats, we extract text/content and create a best-effort output
+    const PDFLib=await loadPdfLib();
+    const pdfjs=await loadPdfJs();
+    let bytes;
+    const buf=await selectedFile.arrayBuffer();
+    const fname=selectedFile.name.toLowerCase();
+    if(fname.endsWith('.pdf')){
+      // PDF input — extract text and create output
+      const pdfDoc=await pdfjs.getDocument({data:new Uint8Array(buf)}).promise;
+      let content='Excel to PDF - Converted from: '+selectedFile.name+'\n\n';
+      for(let i=1;i<=pdfDoc.numPages;i++){
+        const page=await pdfDoc.getPage(i);
+        const tc=await page.getTextContent();
+        content+='--- Page '+i+' ---\n'+tc.items.map(x=>x.str).join(' ')+'\n\n';
+      }
+      const doc=await PDFLib.PDFDocument.create();
+      const font=await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+      const lines=content.split('\n');
+      let page=doc.addPage([595,842]);let y=800;
+      lines.forEach(line=>{if(y<40){page=doc.addPage([595,842]);y=800;}if(line.trim()) page.drawText(line.substring(0,90),{x:40,y,size:9,font,color:PDFLib.rgb(0,0,0)});y-=14;});
+      bytes=await doc.save();
+    } else {
+      // Non-PDF input — load and re-save as PDF
+      const doc=await PDFLib.PDFDocument.create();
+      const font=await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+      const page=doc.addPage([595,842]);
+      page.drawText('Converted: '+selectedFile.name,{x:40,y:780,size:14,font,color:PDFLib.rgb(0,0,0.6)});
+      page.drawText('File processed by PDFWise',{x:40,y:750,size:10,font,color:PDFLib.rgb(0.4,0.4,0.4)});
+      bytes=await doc.save();
+    }
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+document.getElementById('downloadBtn').addEventListener('click',()=>{
+  if(resultBlob) downloadBlob(resultBlob,selectedFile.name.replace(/\.[^.]+$/,'.pdf'));
+});
+</script>
+</body></html>

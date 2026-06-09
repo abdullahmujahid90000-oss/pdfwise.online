@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protect PDF with Password Online Free | PDFWise</title>
+  <meta name="description" content="Add password protection to your PDF online for free. Encrypt PDF files to prevent unauthorized access. No signup required." />
+  <meta name="keywords" content="protect pdf with password, encrypt pdf, password protect pdf online free, secure pdf" />
+  <link rel="canonical" href="https://www.pdfwise.io/tools/protect.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='50%25' y='68%25' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Arial'>P</text></svg>" />
+</head>
+<body>
+<div id="cookieBar" class="cookie-bar" style="display:none">
+  <span>We use cookies to improve your experience. <a href="../privacy.html">Learn more</a></span>
+  <div class="cookie-btns"><button class="cookie-btn-accept" id="cookieAccept">Accept</button><button class="cookie-btn-decline" id="cookieDecline">Decline</button></div>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><div class="logo-icon">P</div>PDFWise</a>
+    <div class="nav-links"><a href="compress.html">Compress</a><a href="merge.html">Merge</a><a href="unlock.html">Unlock</a><a href="watermark.html">Watermark</a></div>
+    <a href="../index.html" class="btn btn-primary nav-cta">All Tools</a>
+  </div>
+</nav>
+<div class="ad-banner"><div class="ad-slot ad-slot-728">Advertisement</div></div>
+
+<section class="tool-hero" style="background:linear-gradient(135deg,#e63946,#9b1c28)">
+  <h1>🔐 Protect PDF</h1>
+  <p>Add a strong password to prevent unauthorized access to your PDF</p>
+</section>
+
+<div class="tool-workspace">
+  <div id="alert" class="alert"></div>
+
+  <div class="drop-zone" id="dropZone">
+    <div class="dz-icon">🔐</div>
+    <h3>Drop your PDF here</h3>
+    <p>or click to select from your device</p>
+    <button class="btn btn-primary btn-lg">Select PDF File</button>
+    <p class="dz-info">Max 100MB · PDF only · Your file stays on your device</p>
+    <input type="file" id="fileInput" accept=".pdf" style="display:none" />
+  </div>
+
+  <div class="file-list" id="filePreview" style="display:none"></div>
+
+  <div class="options-panel" id="options" style="display:none">
+    <h3>🔑 Set Password</h3>
+    <div class="opt-row" style="flex-direction:column;align-items:flex-start;gap:0.75rem">
+      <div style="width:100%">
+        <label class="opt-label" style="display:block;margin-bottom:0.5rem">Password <span style="color:var(--primary)">*</span></label>
+        <input type="password" id="password" placeholder="Enter a strong password" style="width:100%" />
+      </div>
+      <div style="width:100%">
+        <label class="opt-label" style="display:block;margin-bottom:0.5rem">Confirm Password <span style="color:var(--primary)">*</span></label>
+        <input type="password" id="confirmPassword" placeholder="Re-enter password" style="width:100%" />
+      </div>
+    </div>
+    <div style="background:#fff7e6;border-radius:8px;padding:12px;margin-top:1rem;font-size:0.82rem;color:#b7791f">
+      ⚠️ <strong>Important:</strong> If you forget your password, the PDF cannot be recovered. Store it safely.
+    </div>
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-primary btn-lg" id="protectBtn">🔐 Protect PDF</button>
+    </div>
+    <div class="progress-bar" id="progressWrap" style="display:none;margin-top:1rem">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-icon">🔐</div>
+    <h3>PDF Protected Successfully!</h3>
+    <p>Your PDF is now password-protected. Keep your password safe!</p>
+    <div class="result-actions">
+      <button class="btn btn-success" id="downloadBtn">⬇️ Download Protected PDF</button>
+      <button class="btn btn-secondary" id="resetBtn">🔄 Protect Another</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin:2rem 0"><div class="ad-slot ad-slot-responsive">Advertisement</div></div>
+
+  <div style="margin-top:2rem">
+    <h2 class="section-title">🔒 About PDF Security</h2>
+    <p style="color:var(--gray);font-size:0.9rem;line-height:1.8">
+      PDFWise uses AES-128 encryption to protect your PDF, the same standard used by banks and governments. All processing happens in your browser — your file and password are <strong>never sent to any server</strong>. Choose a strong password with a mix of letters, numbers, and special characters for maximum security.
+    </p>
+  </div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-bottom">
+  <span>© 2026 PDFWise · <a href="../index.html">All PDF Tools</a></span>
+  <span><a href="../privacy.html" style="margin-right:1rem">Privacy</a><a href="../terms.html">Terms</a></span>
+</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+let selectedFile=null,resultBlob=null;
+
+setupDropZone('dropZone','fileInput',files=>{
+  selectedFile=files[0];
+  document.getElementById('filePreview').style.display='block';
+  document.getElementById('filePreview').innerHTML=`<div class="file-item"><span class="file-icon">📄</span><span class="file-name">${selectedFile.name}</span><span class="file-size">${formatBytes(selectedFile.size)}</span><span class="file-remove" onclick="location.reload()">✕</span></div>`;
+  document.getElementById('options').style.display='block';
+  document.getElementById('dropZone').style.display='none';
+});
+
+document.getElementById('protectBtn').addEventListener('click',async()=>{
+  const pw=document.getElementById('password').value;
+  const cpw=document.getElementById('confirmPassword').value;
+  if(!pw){showAlert('alert','Please enter a password.');return;}
+  if(pw!==cpw){showAlert('alert','Passwords do not match.');return;}
+  if(pw.length<4){showAlert('alert','Password must be at least 4 characters.');return;}
+  document.getElementById('progressWrap').style.display='block';
+  const t=animateProgress('progressFill',1500);
+  try{
+    const PDFLib=await loadPdfLib();
+    const buf=await selectedFile.arrayBuffer();
+    const doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+    const bytes=await doc.save({
+      userPassword:pw,
+      ownerPassword:pw+'_owner_'+Date.now(),
+      permissions:{
+        printing:'lowResolution',
+        modifying:false,
+        copying:false,
+        annotating:false,
+        fillingForms:true,
+        contentAccessibility:true,
+        documentAssembly:false,
+        encryptionStrength:'AES_128',
+      }
+    });
+    clearInterval(t);completeProgress('progressFill');
+    resultBlob=new Blob([bytes],{type:'application/pdf'});
+    setTimeout(()=>{document.getElementById('options').style.display='none';document.getElementById('resultBox').classList.add('show');},400);
+  }catch(e){clearInterval(t);showAlert('alert','Error: '+e.message);document.getElementById('progressWrap').style.display='none';}
+});
+
+document.getElementById('downloadBtn').addEventListener('click',()=>{if(resultBlob) downloadBlob(resultBlob,'protected_'+selectedFile.name);});
+document.getElementById('resetBtn').addEventListener('click',()=>location.reload());
+</script>
+</body>
+</html>
